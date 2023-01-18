@@ -1,3 +1,5 @@
+const { User } = require('../models');
+
 const displayNameValidation = (req, res, next) => {
     const { displayName } = req.body;
  if (displayName.length < 8) { 
@@ -25,8 +27,18 @@ const passwordValidation = (req, res, next) => {
 return next();
 };
 
+const verifyEmail = async (req, res, next) => {
+    const { email } = req.body;
+    const user = await User.findOne({ where: { email } });
+    if (user) {
+        return res.status(409).json({ message: 'User already registered' });
+    }
+    next();
+};
+
 module.exports = {
     displayNameValidation,
     emailValidation,
     passwordValidation,
+    verifyEmail,
 };

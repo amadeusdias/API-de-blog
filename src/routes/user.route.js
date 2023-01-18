@@ -4,10 +4,12 @@ const {
     displayNameValidation, 
     emailValidation, 
     passwordValidation, 
+    verifyEmail,
 } = require('../middlewares/user.middleware');
 
 const router = express.Router();
 
-router.post('/', displayNameValidation, emailValidation, passwordValidation, userController);
+router.post('/',
+ displayNameValidation, emailValidation, passwordValidation, verifyEmail, userController);
 
 module.exports = router;
