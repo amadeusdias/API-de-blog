@@ -13,16 +13,6 @@ const generateToken = (data) => {
     return token;
 };
 
-const verifyToken = (token) => {
-    try {
-        const decoded = jwt.verify(token, secret);
-        return { decoded };
-    } catch (error) {
-        return { error };
-    }
-};
-
 module.exports = {
     generateToken,
-    verifyToken,
 };

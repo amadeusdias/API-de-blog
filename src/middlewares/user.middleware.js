@@ -36,6 +36,15 @@ const verifyEmail = async (req, res, next) => {
     next();
 };
 
+// const verifyId = async (req, res, next) => {
+//     const { id } = req.params;
+//     const user = await User.findByPk(id);
+//     if (!user) {
+//         return res.status(404).message({ message: 'User does not exist' });
+//     }
+//     next();
+// };
+
 module.exports = {
     displayNameValidation,
     emailValidation,
