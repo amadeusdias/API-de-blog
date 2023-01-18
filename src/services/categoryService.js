@@ -6,6 +6,12 @@ const addCategory = async ({ name }) => {
     return { statusCode: 201, message: { id: insertId, name } };
 };
 
+const getCategories = async () => {
+    const categories = await Category.findAll({ attributes: { exclude: ['password'] } });
+    return categories;
+};
+
 module.exports = {
     addCategory,
+    getCategories,
 };

@@ -7,5 +7,5 @@ const tokenVerify = require('../middlewares/token.middleware');
 const router = express.Router();
 
 router.post('/', tokenVerify, validateName, Controller.addController);
-
+router.get('/', tokenVerify, Controller.listController);
 module.exports = router;
