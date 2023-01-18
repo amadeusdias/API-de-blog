@@ -2,7 +2,6 @@ const { User } = require('../models');
 const { generateToken } = require('../auth/token');
 
 const loginService = async (data) => {
-    console.log('service');
     const { email, password } = data;
     const user = await User.findOne({ where: { email, password } });
     console.log(user);
