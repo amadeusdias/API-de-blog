@@ -64,10 +64,10 @@ const deletePost = async (id, userId) => {
     const post = await BlogPost.findByPk(id);
     console.log(post);
     if (!post) return { statusCode: 404, message: 'Post does not exist' };
-    if (post.id !== userId) {
+    if (post.userId !== userId) {
         return { statusCode: 401, message: 'Unauthorized user' };
     }
-    await post.destroy();
+    await BlogPost.destroy({ where: { id } });
 };
 
 module.exports = {
