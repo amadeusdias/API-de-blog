@@ -9,7 +9,7 @@ const getByIdController = async (req, res) => {
     const { id } = req.params;
     const postById = await postService.getById(id);
     if (postById.message) {
-        res.status(postById.statusCode).json(postById.message);
+       return res.status(postById.statusCode).json({ message: 'Post does not exist' });
     }
     return res.status(200).json(postById);
 };

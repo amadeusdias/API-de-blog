@@ -20,8 +20,8 @@ const getById = async (id) => {
         where: { id },
         include: [{
             model: User,
-                as: 'User', 
-                atributtes: {
+                as: 'user', 
+                attributes: {
                     exclude: ['password'],
                 },
             },
