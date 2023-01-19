@@ -31,7 +31,7 @@ const getById = async (id) => {
                 through: { atributtes: [] },
             }],
     });
-    if (!postId) return { statusCode: 404, message: 'Post does not exist' }; 
+    if (!postId) return { statusCode: 400, message: 'Post does not exist' }; 
     return postId;
 };
 
@@ -51,8 +51,29 @@ return { statusCode: 400, message: 'one or more "categoryIds" not found' };
     return post;
 };
 
+const updatePost = async (id, title, content, userId) => {
+    await BlogPost.update(
+        { title, content },
+        { where: { id, userId } },
+    );
+    const result = await getById(id);
+    return result;
+};
+
+const deletePost = async (id, userId) => {
+    const post = await BlogPost.findByPk(id);
+    console.log(post);
+    if (!post) return { statusCode: 404, message: 'Post does not exist' };
+    if (post.id !== userId) {
+        return { statusCode: 401, message: 'Unauthorized user' };
+    }
+    await post.destroy();
+};
+
 module.exports = {
     getAllPost,
     getById,
     newPost,
+    updatePost,
+    deletePost,
 };

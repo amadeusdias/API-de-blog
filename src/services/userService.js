@@ -14,7 +14,6 @@ const allUsers = async () => {
 
 const userById = async (id) => {
     const user = await User.findByPk(id, { attributes: { exclude: 'password' } });
-    console.log(user);
     if (!user) {
         return { statusCode: 404, message: 'User does not exist' };
     }

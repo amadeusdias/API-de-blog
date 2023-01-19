@@ -24,8 +24,32 @@ const newPost = async (req, res) => {
     return res.status(201).json(post);
 };
 
+const updateController = async (req, res) => {
+    const { title, content } = req.body;
+    const { data } = req.user;
+    const { id } = req.params;
+
+    const update = await postService.updatePost(id, title, content, data.id);
+    if (data.id !== update.id) {
+        return res.status(401).json({ message: 'Unauthorized user' });
+    }
+    return res.status(200).json(update);
+};
+
+const deleteController = async (req, res) => {
+    const { id } = req.params;
+    const { data } = req.user;
+    const post = await postService.deletePost(id, data.id);
+    if (post) {
+        return res.status(post.statusCode).json({ message: post.message });
+    }
+    return res.status(204).end();
+};
+
 module.exports = {
     getAllController,
     getByIdController,
     newPost,
+    updateController,
+    deleteController,
 };
