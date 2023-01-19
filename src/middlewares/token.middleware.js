@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET;
 
 module.exports = async (req, res, next) => {
-   // const token = req.header('Authorization');
      const token = req.headers.authorization;
 
     if (!token) {
