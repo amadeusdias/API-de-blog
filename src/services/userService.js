@@ -20,8 +20,13 @@ const userById = async (id) => {
     return { statusCode: 200, result: user };
 };
 
+const deleteUser = async (id) => {
+    await User.destroy({ where: { id } });
+};
+
 module.exports = {
     allUsers,
     userService,
     userById,
+    deleteUser,
 };

@@ -1,4 +1,4 @@
-const { userService, allUsers, userById } = require('../services/userService');
+const { userService, allUsers, userById, deleteUser } = require('../services/userService');
 const { User } = require('../models');
 
 const userController = async (req, res) => {
@@ -25,4 +25,11 @@ const listIdController = async (req, res) => {
     return res.status(statusCode).json(result);
 };
 
-module.exports = { userController, listController, listIdController };
+const deleteController = async (req, res) => {
+    const { data } = req.user;
+    console.log(data);
+    await deleteUser(data.id);
+    res.status(204).end();
+};
+
+module.exports = { userController, listController, listIdController, deleteController };

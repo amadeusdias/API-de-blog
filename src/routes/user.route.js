@@ -2,7 +2,8 @@ const express = require('express');
 const { 
     userController,
     listController,
-    listIdController, 
+    listIdController,
+    deleteController,
 } = require('../controllers/user.controller');
 const { 
     displayNameValidation, 
@@ -20,5 +21,6 @@ router.post('/',
 
 router.get('/', tokenVerify, listController);
 router.get('/:id', tokenVerify, listIdController);
+router.delete('/me', tokenVerify, deleteController);
 
 module.exports = router;
