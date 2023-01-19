@@ -31,7 +31,7 @@ const getById = async (id) => {
                 through: { atributtes: [] },
             }],
     });
-    if (!postId) return { statusCode: 400, message: 'Post does not exist' }; 
+    if (!postId) return { statusCode: 404, message: 'Post does not exist' }; 
     return postId;
 };
 
