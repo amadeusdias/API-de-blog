@@ -2,8 +2,8 @@ const { User } = require('../models');
 const { generateToken } = require('../auth/token');
 
 const userService = async (data) => {
-    const { email } = data;
-    const token = generateToken(email);
+    // const { email } = data;
+    const token = generateToken(data);
     return { type: null, statusCode: 201, message: { token } };
 };
 

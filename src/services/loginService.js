@@ -8,7 +8,7 @@ const loginService = async (data) => {
     if (!user) {
         return { type: 'invalid_fields', statusCode: 400, message: 'Invalid fields' };
     }
-    const token = generateToken(email);
+    const token = generateToken(user);
     return { type: null, statusCode: 200, message: { token } };
 };
 module.exports = loginService;

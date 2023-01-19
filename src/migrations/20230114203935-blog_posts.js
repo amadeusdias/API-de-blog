@@ -14,7 +14,6 @@ module.exports = {
         type: Sequelize.STRING,
       },
       content:{
-        unique: true,
         type: Sequelize.STRING,
       },
       user_id:{
